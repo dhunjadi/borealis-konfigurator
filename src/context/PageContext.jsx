@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
 
-export const QuestionContext = createContext();
+export const PageContext = createContext();
 
-export const QuestionContextProvider = ({ children }) => {
-  const [displayQuestion, setDisplayQuestion] = useState(0);
+export const PageContextProvider = ({ children }) => {
+  const [page, setPage] = useState(0);
 
 /* // Spremanje rednog broja pitanja iz local storage-a u state 
   useEffect(() => {
@@ -18,14 +18,14 @@ export const QuestionContextProvider = ({ children }) => {
     localStorage.setItem("my-questions", JSON.stringify(displayQuestion)); //Izrada Key-a
   }); */
 
-  const QuestionContextValue = {
-    displayQuestion,
-    setDisplayQuestion
+  const PageContextValue = {
+    page,
+    setPage
   }
 
   return (
-    <QuestionContext.Provider value={QuestionContextValue}>
+    <PageContext.Provider value={PageContextValue}>
       {children}
-    </QuestionContext.Provider>
+    </PageContext.Provider>
   );
 };

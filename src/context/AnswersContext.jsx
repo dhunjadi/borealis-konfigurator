@@ -7,11 +7,18 @@ export const AnswersContextProvider = ({children}) => {
     const [radio, setRadio] = useState(''); 
     //Second step
     const [selected, setSelected] = useState([]) 
+    const [foundCopy, setFoundCopy] = useState([])
     // Second step - total
     const [total, setTotal] = useState(0) 
     const [filtered, setFiltered] = useState([])
     const prevRef = useRef();
     //Third step
+    const [name, setName] = useState('')
+    const [tel, setTel] = useState('')
+    const [email, setEmail] = useState('')
+    const [add, setAdd] = useState('')
+    
+       
   
   
     // Previous total
@@ -40,11 +47,21 @@ const prevTotal = prevRef.current
         setRadio,
         selected,
         setSelected,
+        foundCopy,
+        setFoundCopy,
         total,
         setTotal,
         filtered,
         setFiltered,
         prevTotal,
+        name,
+        setName,
+        tel, 
+        setTel,
+        email, 
+        setEmail,
+        add, 
+        setAdd
     }
 
     return(

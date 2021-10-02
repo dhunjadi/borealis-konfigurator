@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AnswersContext } from "../context/AnswersContext";
-import { QuestionContext } from "../context/QuestionContext";
-import questionList from "../questionList";
+import { PageContext } from "../context/PageContext";
+import pageList from "../pageList";
 
 export default function Total() {
   const { selected, total, setTotal, prevTotal } = useContext(AnswersContext);
-  const { displayQuestion } = useContext(QuestionContext);
+  const { page } = useContext(PageContext);
   const [clicked, setClicked] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [correct, setCorrect] = useState(false);
@@ -26,11 +26,13 @@ export default function Total() {
   for (let i = 0; i < selected.length; i++) {
     found = [
       ...found,
-      ...questionList[displayQuestion].answers.filter(
+      ...pageList[page].answers.filter(
         (ans) => ans.price === selected[i]
       ),
     ];
   }
+
+  console.log(found)
 
   const handleSubmit = (e) => {
     e.preventDefault();
