@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import questionList from "../questionList";
 import { QuestionContext } from "../context/QuestionContext";
 import { AnswersContext } from "../context/AnswersContext";
@@ -8,8 +8,7 @@ import Total from "./Total";
 
 export default function Modal({ setShowModal }) {
   const { displayQuestion, setDisplayQuestion } = useContext(QuestionContext);
-  const { answers, setAnswers } = useContext(AnswersContext);
-  const [radio, setRadio] = useState();
+  const { radio, setRadio, selected } = useContext(AnswersContext);
 
   const singleChoiceAnswers = questionList[displayQuestion].answers.map(
     (choice) => {
@@ -29,15 +28,16 @@ export default function Modal({ setShowModal }) {
 
   const multipleChoiceAnswers = questionList[displayQuestion].answers.map(
     (answer) => {
-      return <Answer key={uuidv4()} answer={answer} />;
+      return <Answer 
+      key={uuidv4()} 
+      answer={answer} 
+      />;
     }
   );
 
   const handleNext = () => {
     if (radio) {
       setDisplayQuestion((prev) => prev + 1);
-      setAnswers([...answers, radio]);
-      console.log(answers);
     }
   };
 
@@ -63,6 +63,8 @@ export default function Modal({ setShowModal }) {
         <button onClick={handleNext}>Dalje</button>
       </div>
       {displayQuestion === 1 && <Total />}
+      Radio: {radio} <br />
+      Selected: {selected}
     </div>
   );
 }

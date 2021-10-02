@@ -4,7 +4,9 @@ export const AnswersContext = createContext();
 
 export const AnswersContextProvider = ({children}) => {
 
-    const [answers, setAnswers] = useState([])
+    const [radio, setRadio] = useState();
+    const [selected, setSelected] = useState([])
+    const [total, setTotal] = useState(0)
 
 /*     // Spremanje odgovora iz local storage-a u state
 
@@ -22,8 +24,12 @@ export const AnswersContextProvider = ({children}) => {
     }) */
 
     const AnsersContextValue = {
-        answers,
-        setAnswers
+        radio,
+        setRadio,
+        selected,
+        setSelected,
+        total,
+        setTotal
     }
 
     return(
