@@ -7,9 +7,10 @@ import AnswerMulti from "./AnswerMulti";
 import Total from "./Total";
 import AnswerSingle from "./AnswerSingle";
 
+
 export default function Modal({ setShowModal }) {
   const { displayQuestion, setDisplayQuestion } = useContext(QuestionContext);
-  const { radio, selected } = useContext(AnswersContext);
+  const { radio } = useContext(AnswersContext);
 
   const singleChoiceAnswers = questionList[displayQuestion].answers.map(
     (answer) => {
@@ -51,8 +52,6 @@ export default function Modal({ setShowModal }) {
         <button onClick={handleNext}>Dalje</button>
       </div>
       {displayQuestion === 1 && <Total />}
-      Radio: {radio} <br />
-      Selected: {selected}
     </div>
   );
 }

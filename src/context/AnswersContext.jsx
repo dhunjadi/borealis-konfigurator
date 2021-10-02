@@ -7,6 +7,7 @@ export const AnswersContextProvider = ({children}) => {
     const [radio, setRadio] = useState('');
     const [selected, setSelected] = useState([])
     const [total, setTotal] = useState(0)
+    const [filtered, setFiltered] = useState([])
 
 /*     // Spremanje odgovora iz local storage-a u state
 
@@ -29,7 +30,9 @@ export const AnswersContextProvider = ({children}) => {
         selected,
         setSelected,
         total,
-        setTotal
+        setTotal,
+        filtered,
+        setFiltered
     }
 
     return(
