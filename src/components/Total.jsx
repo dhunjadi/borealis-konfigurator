@@ -4,19 +4,23 @@ import { QuestionContext } from "../context/QuestionContext";
 import questionList from "../questionList";
 
 export default function Total() {
-  const { selected, total, setTotal } = useContext(AnswersContext);
+  const { selected, total, setTotal, prevTotal } = useContext(AnswersContext);
   const { displayQuestion } = useContext(QuestionContext);
   const [clicked, setClicked] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [correct, setCorrect] = useState(false)
-  const [incorrect, setIncorrect] = useState(false)
+  const [correct, setCorrect] = useState(false);
+  const [incorrect, setIncorrect] = useState(false);
+ 
+
+
 
   useEffect(() => {
     let totalPrice = selected.reduce((sum, curr) => {
       return sum + Number(curr);
     }, 0);
     setTotal(totalPrice);
-  }, [selected, setTotal ]);
+    setCorrect(false)
+  }, [selected, setTotal]);
 
   let found = [];
   for (let i = 0; i < selected.length; i++) {
@@ -29,21 +33,21 @@ export default function Total() {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if(inputValue === 'Tokić123'){
-        setIncorrect(false)
-        setCorrect(true)
-        setClicked(false)
-        setTotal(prev => 70 / 100 * prev)
-    } else{
-        setIncorrect(true)
+    e.preventDefault();
+    if (inputValue === "Tokić123") {
+      setIncorrect(false);
+      setCorrect(true);
+      setClicked(false);
+      setTotal((prev) => (70 / 100) * prev);
+    } else {
+      setIncorrect(true);
     }
-  }
+  };
 
   return (
     <div>
-        {correct && <p>bravo</p>}
-        {incorrect&& <p>ne bravo</p>}
+      {correct && <> <p>Hvala Vam! Unijeli ste ispravan kod kupona!</p> <p>OSNOVICA: {prevTotal}</p> <p>Popust (30%): {(prevTotal * 0.3).toFixed(2)}</p> </>}
+      {incorrect && <p>Neispravan kupon!</p>}
       {clicked ? (
         <>
           <input
@@ -56,7 +60,7 @@ export default function Total() {
       ) : (
         <p onClick={() => setClicked(true)}>Imam kupon</p>
       )}
-      UKUPNO : {total}
+      UKUPNO : {total.toFixed(2)} kn
     </div>
   );
 }

@@ -1,7 +1,7 @@
 const questionList = [
     {
       text: "Korak 1. Odaberite proizvođača vašeg vozila",
-      multipleChoice: false,
+      answerType: "singlechoice",
       answers: [
         { id: "1", answer: "Peugeot" },
         { id: "2", answer: "Volkswagen" },
@@ -17,7 +17,7 @@ const questionList = [
     },
     {
       text: "Korak 2. Odaberite jednu ili više usluga za koje ste",
-      multipleChoice: true,
+      answerType: "multiplechoice",
       answers: [
         { id: "11", answer: "Zamjena ulja i filtera" , price: "500" },
         { id: "12", answer: "Promjena pakni", price: "450" },
@@ -26,6 +26,15 @@ const questionList = [
         { id: "15", answer: "Balansiranje guma", price: "50" },
         { id: "16", answer: "Zamjena ulja u kočnicama", price: "229" }
       ],
+    },
+    {
+      text: "Korak 3. Vaši kontakt podaci",
+      answerType: "text",
+      answers: [
+        { id:'' , inputName:'' , name: '', placeholder:''},
+
+      ],
+      
     },
   ];
 

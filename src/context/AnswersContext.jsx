@@ -1,14 +1,25 @@
-import {createContext, useState } from 'react'
+import {createContext, useState, useRef, useEffect } from 'react'
 
 export const AnswersContext = createContext();
 
 export const AnswersContextProvider = ({children}) => {
-
-    const [radio, setRadio] = useState('');
-    const [selected, setSelected] = useState([])
-    const [total, setTotal] = useState(0)
+    // First step
+    const [radio, setRadio] = useState(''); 
+    //Second step
+    const [selected, setSelected] = useState([]) 
+    // Second step - total
+    const [total, setTotal] = useState(0) 
     const [filtered, setFiltered] = useState([])
+    const prevRef = useRef();
+    //Third step
+  
+  
+    // Previous total
+  useEffect(()=>{
+    prevRef.current = total
+})
 
+const prevTotal = prevRef.current
 /*     // Spremanje odgovora iz local storage-a u state
 
     useEffect(() => {
@@ -32,7 +43,8 @@ export const AnswersContextProvider = ({children}) => {
         total,
         setTotal,
         filtered,
-        setFiltered
+        setFiltered,
+        prevTotal,
     }
 
     return(

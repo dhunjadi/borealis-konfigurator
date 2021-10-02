@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AnswersContext } from "../context/AnswersContext";
 
-export default function AnswerSingle({ answer }) {
+export default function FirstStep({ answer }) {
   const { radio, setRadio } = useContext(AnswersContext);
   return (
     <div className="pair">

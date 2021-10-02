@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AnswersContext } from "../context/AnswersContext";
 
-export default function AnswerMulti({ answer }) {
+export default function SecondStep({ answer }) {
 
   const { selected, setSelected } = useContext(AnswersContext);
 

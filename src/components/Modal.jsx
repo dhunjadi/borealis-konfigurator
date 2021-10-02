@@ -3,26 +3,34 @@ import questionList from "../questionList";
 import { QuestionContext } from "../context/QuestionContext";
 import { AnswersContext } from "../context/AnswersContext";
 import { v4 as uuidv4 } from "uuid";
-import AnswerMulti from "./AnswerMulti";
+import SecondStep from "./SecondStep";
 import Total from "./Total";
-import AnswerSingle from "./AnswerSingle";
+import FirstStep from "./FirstStep";
+import ThirdStep from "./ThirdStep";
 
 
 export default function Modal({ setShowModal }) {
   const { displayQuestion, setDisplayQuestion } = useContext(QuestionContext);
   const { radio } = useContext(AnswersContext);
 
-  const singleChoiceAnswers = questionList[displayQuestion].answers.map(
+  const firstStep = questionList[displayQuestion].answers.map(
     (answer) => {
-      return <AnswerSingle key={uuidv4()} answer={answer} />;
+      return <FirstStep key={uuidv4()} answer={answer} />;
     }
   );
 
-  const multipleChoiceAnswers = questionList[displayQuestion].answers.map(
+  const secondStep = questionList[displayQuestion].answers.map(
     (answer) => {
-      return <AnswerMulti key={uuidv4()} answer={answer} />;
+      return <SecondStep key={uuidv4()} answer={answer} />;
     }
   );
+
+  const thirdStep = questionList[displayQuestion].answers.map(
+    (answer) => {
+      return <ThirdStep key={uuidv4()} answer={answer} />;
+    }
+  );
+  
 
   const handleNext = () => {
     if (radio) {
@@ -40,9 +48,9 @@ export default function Modal({ setShowModal }) {
       </div>
       <h1>{questionList[displayQuestion].text}</h1>
       <div className="answers-container"></div>
-      {questionList[displayQuestion].multipleChoice === false
-        ? singleChoiceAnswers
-        : multipleChoiceAnswers}
+      {questionList[displayQuestion].answerType === "singlechoice" && firstStep}
+      {questionList[displayQuestion].answerType === "multiplechoice" && secondStep}
+      {questionList[displayQuestion].answerType === "text" && thirdStep}
       <div className="next-btn">
         {displayQuestion > 0 && (
           <button onClick={() => setDisplayQuestion((prev) => prev - 1)}>
