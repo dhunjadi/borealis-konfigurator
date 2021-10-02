@@ -3,35 +3,23 @@ import questionList from "../questionList";
 import { QuestionContext } from "../context/QuestionContext";
 import { AnswersContext } from "../context/AnswersContext";
 import { v4 as uuidv4 } from "uuid";
-import Answer from "./Answer";
+import AnswerMulti from "./AnswerMulti";
 import Total from "./Total";
+import AnswerSingle from "./AnswerSingle";
 
 export default function Modal({ setShowModal }) {
   const { displayQuestion, setDisplayQuestion } = useContext(QuestionContext);
-  const { radio, setRadio, selected } = useContext(AnswersContext);
+  const { radio, selected } = useContext(AnswersContext);
 
   const singleChoiceAnswers = questionList[displayQuestion].answers.map(
-    (choice) => {
-      return (
-        <div key={uuidv4()} className="pair">
-          <input
-            type="radio"
-            checked={radio === choice.answer}
-            value={choice.answer}
-            onChange={(e) => setRadio(e.target.value)}
-          />
-          {choice.answer}
-        </div>
-      );
+    (answer) => {
+      return <AnswerSingle key={uuidv4()} answer={answer} />;
     }
   );
 
   const multipleChoiceAnswers = questionList[displayQuestion].answers.map(
     (answer) => {
-      return <Answer 
-      key={uuidv4()} 
-      answer={answer} 
-      />;
+      return <AnswerMulti key={uuidv4()} answer={answer} />;
     }
   );
 

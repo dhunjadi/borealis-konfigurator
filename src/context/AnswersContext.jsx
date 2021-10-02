@@ -4,7 +4,7 @@ export const AnswersContext = createContext();
 
 export const AnswersContextProvider = ({children}) => {
 
-    const [radio, setRadio] = useState();
+    const [radio, setRadio] = useState('');
     const [selected, setSelected] = useState([])
     const [total, setTotal] = useState(0)
 
