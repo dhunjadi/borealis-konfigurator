@@ -19,7 +19,7 @@ export default function ThirdStep() {
     };
 
   return (
-    <>
+    <div className='third-step-container'>
       <div className="title-container">
         <h1>{pageList[page].text}</h1>
       </div>
@@ -30,9 +30,9 @@ export default function ThirdStep() {
         <textarea name="add" placeholder="Napomena (opcionalno)" value={add} onChange={(e)=> setAdd(e.target.value)}/>
       </div>
       <div className="btns-container">
-        <button onClick={handleBack}>Nazad</button>
-        <button onClick={handleNext}>Dalje</button>
+        <button className="back-btn" onClick={handleBack}>Nazad</button>
+        <button className="next-btn" onClick={handleNext}>Dalje</button>
       </div>
-    </>
+    </div>
   );
 }

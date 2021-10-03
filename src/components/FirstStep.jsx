@@ -20,7 +20,7 @@ export default function FirstStep() {
           />
         </div>
         <div className="text-container">
-          <p>{ans.answer}</p>
+          <label>{ans.answer}</label>
         </div>
       </div>
     );
@@ -33,14 +33,16 @@ export default function FirstStep() {
   };
 
   return (
-    <>
+    <div className='first-step-container'>
       <div className="title-container">
         <h1>{pageList[page].text}</h1>
       </div>
-      <div className="inputs">
-        {inputs}
+      <div className="inputs">{inputs}</div>
+      <div className="btn-container">
+        <button className="next-btn" onClick={handleNext}>
+          Dalje
+        </button>
       </div>
-      <button onClick={handleNext}>Dalje</button>
-    </>
+    </div>
   );
 }

@@ -13,7 +13,7 @@ export default function Modal({ setShowModal }) {
   return (
     <div className="modal">
       <div className="x-btn">
-        <button onClick={() => setShowModal(false)}>&times;</button>
+        <button className='x-btn' onClick={() => setShowModal(false)}>&times;</button>
       </div>
       <div className="modal-title">
         <h1>Konfigurator servisa</h1>

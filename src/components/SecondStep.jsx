@@ -7,11 +7,14 @@ import Total from "./Total";
 
 export default function SecondStep() {
   const { page, setPage } = useContext(PageContext);
-  const { selected, setSelected } = useContext(AnswersContext);
+  const { selected, setSelected, showCoupon, setShowCoupon, setDiscountInput } = useContext(AnswersContext);
 
   const handleChange = (event) => {
     const { checked, value } = event.currentTarget;
-
+    setShowCoupon(true)
+    if(!showCoupon){
+      setDiscountInput(true)
+    }
     setSelected((prev) =>
       checked ? [...prev, value] : prev.filter((val) => val !== value)
     );
@@ -30,7 +33,6 @@ export default function SecondStep() {
   const inputs = pageList[page].answers.map((ans) => {
     return (
       <div key={uuidv4()} className="pair">
-        <label htmlFor={ans.id}>{ans.answer}</label>
         <div className="input-container">
           <input
             type="checkbox"
@@ -39,21 +41,28 @@ export default function SecondStep() {
             onChange={handleChange}
           />
         </div>
+        <div className="text-container">
+          <label htmlFor={ans.id}>{ans.answer}</label>
+        </div>
       </div>
     );
   });
 
   return (
-    <>
+    <div className='second-step-container'>
       <div className="title-container">
         <h1>{pageList[page].text}</h1>
       </div>
       <div className="inputs">{inputs}</div>
       <Total />
       <div className="btns-container">
-        <button onClick={handleBack}>Nazad</button>
-        <button onClick={handleNext}>Dalje</button>
+        <button className="back-btn" onClick={handleBack}>
+          Nazad
+        </button>
+        <button className="next-btn" onClick={handleNext}>
+          Dalje
+        </button>
       </div>
-    </>
+    </div>
   );
 }
