@@ -14,7 +14,6 @@ export default function FourthStep() {
     add,
     filteredSelected,
     discount,
-    discountInput,
     correct,
     discountedTotal,
     totalWithoutDiscount

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AnswersContext } from "../context/AnswersContext";
 import { PageContext } from "../context/PageContext";
 import pageList from "../pageList";
@@ -8,6 +8,7 @@ import Total from "./Total";
 export default function SecondStep() {
   const { page, setPage } = useContext(PageContext);
   const { selected, setSelected } = useContext(AnswersContext);
+  const [ error, setError ] = useState(false)
 
   const handleChange = (event) => {
     const { checked, value } = event.currentTarget;
@@ -20,6 +21,10 @@ export default function SecondStep() {
   const handleNext = () => {
     if (selected.length !== 0) {
       setPage((prev) => prev + 1);
+    }
+
+    if(selected.length === 0){
+      setError(!error)
     }
   };
 
@@ -52,6 +57,7 @@ export default function SecondStep() {
       </div>
       <div className="inputs">{inputs}</div>
       <Total />
+      {error && <p className='error-msg'>Obavezan odabir barem jedne usluge</p>}
       <div className="btns-container">
         <button className="back-btn" onClick={handleBack}>
           Nazad

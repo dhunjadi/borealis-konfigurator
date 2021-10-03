@@ -197,6 +197,11 @@
   color: var(--dark-blue);
 }
 
+.error-msg{
+  color: var(--dark-red);
+  font-weight: 700;
+}
+
 .third-step-container .input-container input,
 textarea {
   border: 2px solid var(--dark-blue);
