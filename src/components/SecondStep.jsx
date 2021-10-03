@@ -7,14 +7,11 @@ import Total from "./Total";
 
 export default function SecondStep() {
   const { page, setPage } = useContext(PageContext);
-  const { selected, setSelected, showCoupon, setShowCoupon, setDiscountInput } = useContext(AnswersContext);
+  const { selected, setSelected } = useContext(AnswersContext);
 
   const handleChange = (event) => {
     const { checked, value } = event.currentTarget;
-    setShowCoupon(true)
-    if(!showCoupon){
-      setDiscountInput(true)
-    }
+
     setSelected((prev) =>
       checked ? [...prev, value] : prev.filter((val) => val !== value)
     );

@@ -14,8 +14,10 @@ export default function FourthStep() {
     add,
     filteredSelected,
     discount,
-    total,
     discountInput,
+    correct,
+    discountedTotal,
+    totalWithoutDiscount
   } = useContext(AnswersContext);
   const [showSendMessage, setShowSendMessage] = useState(false);
 
@@ -58,8 +60,8 @@ export default function FourthStep() {
           <div className="second-step-container-content">
             {selected}
             <div className="second-step-container-content-total">
-              {discountInput && <p>Popust (30%) -{discount.toFixed(2)} KN</p>}{" "}
-              <p>UKUPNO {total.toFixed(2)} KN</p>
+              {correct && <p>Popust (30%) -{discount.toFixed(2)} KN</p>}{" "}
+              UKUPNO : {correct ? discountedTotal.toFixed(2) : totalWithoutDiscount.toFixed(2)} kn
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { createContext, useState, useRef, useEffect } from "react";
+import { createContext, useState } from "react";
 import pageList from "../pageList";
 
 export const AnswersContext = createContext();
@@ -10,38 +10,31 @@ export const AnswersContextProvider = ({ children }) => {
   const [selected, setSelected] = useState([]);
   const [foundCopy, setFoundCopy] = useState([]);
   // Second step - total
-  const [total, setTotal] = useState(0);
+  const [totalWithoutDiscount, setTotalWithoutDiscount] = useState(0);
+  const [base, setBase] = useState(0);
   const [filtered, setFiltered] = useState([]);
-  const [showCoupon, setShowCoupon] = useState(true)
+  const [showCoupon, setShowCoupon] = useState(true);
   const [discountInput, setDiscountInput] = useState(false);
-  const prevRef = useRef();
+  const [correct, setCorrect] = useState(false);
   //Third step
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
   const [add, setAdd] = useState("");
 
-  // Previous total
-  useEffect(() => {
-    prevRef.current = total;
-  });
-
-  const prevTotal = prevRef.current;
 
   let filteredSelected = [];
   for (let i = 0; i < selected.length; i++) {
     filteredSelected = [
       ...filteredSelected,
-      ...pageList[1].answers.filter(
-        (ans) => ans.price === selected[i]
-      ),
+      ...pageList[1].answers.filter((ans) => ans.price === selected[i]),
     ];
   }
 
-  const discount = prevTotal * 0.3
+  // Korak 2 - računanje ukupnog iznosa sa popustom
+  const discount = base * 0.3; // Popust
+  const discountedTotal = base - discount; // Osnovica - popust
 
-  console.log(filteredSelected)
-  
   /*     // Spremanje odgovora iz local storage-a u state
 
     useEffect(() => {
@@ -64,11 +57,10 @@ export const AnswersContextProvider = ({ children }) => {
     setSelected,
     foundCopy,
     setFoundCopy,
-    total,
-    setTotal,
+    totalWithoutDiscount,
+    setTotalWithoutDiscount,
     filtered,
     setFiltered,
-    prevTotal,
     name,
     setName,
     tel,
@@ -82,7 +74,12 @@ export const AnswersContextProvider = ({ children }) => {
     setShowCoupon,
     discount,
     discountInput,
-    setDiscountInput
+    setDiscountInput,
+    base,
+    setBase,
+    discountedTotal,
+    correct,
+    setCorrect
   };
 
   return (

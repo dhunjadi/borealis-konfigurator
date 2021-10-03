@@ -4,25 +4,29 @@ import { AnswersContext } from "../context/AnswersContext";
 export default function Total() {
   const {
     selected,
-    total,
-    setTotal,
-    prevTotal,
+    totalWithoutDiscount,
+    setTotalWithoutDiscount,
     showCoupon,
     setShowCoupon,
     discount,
     discountInput,
     setDiscountInput,
+    base,
+    setBase,
+    discountedTotal,
+    correct,
+    setCorrect
   } = useContext(AnswersContext);
   const [inputValue, setInputValue] = useState("");
-  const [correct, setCorrect] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
 
   useEffect(() => {
     let totalPrice = selected.reduce((sum, curr) => {
       return sum + Number(curr);
     }, 0);
-    setTotal(totalPrice);
-  }, [selected, setTotal]);
+    setTotalWithoutDiscount(totalPrice);
+    setBase(totalPrice)
+  }, [selected, setTotalWithoutDiscount, setBase]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +34,8 @@ export default function Total() {
       setIncorrect(false);
       setCorrect(true);
       setDiscountInput(false);
-      setTotal((prev) => (70 / 100) * prev);
+      setShowCoupon(false)
+      setTotalWithoutDiscount((prev) => (70 / 100) * prev);
     } else {
       setIncorrect(true);
     }
@@ -40,12 +45,11 @@ export default function Total() {
     <div className="total-container">
       {correct && (
         <>
-          {" "}
           <p className="success-msg">
             Hvala Vam! Unijeli ste ispravan kod kupona!
-          </p>{" "}
-          <p>OSNOVICA: {prevTotal} kn</p>{" "}
-          <p>Popust (30%): {discount.toFixed(2)}</p>{" "}
+          </p>
+          <p>OSNOVICA: {base} kn</p>
+          <p>Popust (30%): {discount.toFixed(2)}</p>
         </>
       )}
       {incorrect && <p className="fail-msg">Neispravan kupon!</p>}
@@ -66,7 +70,7 @@ export default function Total() {
           setShowCoupon(false)
           }}>Imam kupon</p>}
       
-      UKUPNO : {total.toFixed(2)} kn
+      UKUPNO : {correct ? discountedTotal.toFixed(2) : totalWithoutDiscount.toFixed(2)} kn
     </div>
   );
 }
