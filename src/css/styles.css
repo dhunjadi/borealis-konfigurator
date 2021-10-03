@@ -10,6 +10,22 @@
   --dark-red: #ac0e28;
 }
 
+.error-msg{
+  color: var(--dark-red);
+  font-weight: 700;
+}
+
+.success-msg{
+  color: green;
+  font-weight: 700;
+}
+
+.coupon-link{
+  cursor: pointer;
+}
+
+/* APP */
+
 .App {
   height: 100vh;
   display: flex;
@@ -33,6 +49,13 @@
   margin: 10px;
   background-color: white;
   font-weight: 700;
+  cursor: pointer;
+}
+
+.start-btn:hover{
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
 }
 
 /* MODAL */
@@ -45,30 +68,6 @@
   border-radius: 25px;
   background: white;
   width: 70%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px;
-}
-
-.modal-title {
-  color: var(--dark-blue);
-}
-
-.pair .text-container p {
-  color: var(--dark-blue);
-}
-
-.send-modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 25px;
-  background: gray;
-  width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -91,8 +90,48 @@
 }
 
 .x-btn:hover {
-  color: var(--light-blue);
+  color: var(--dark-red);
 }
+
+.modal-title {
+  color: var(--dark-blue);
+}
+
+/* STEPS CONTAINERS */
+
+.steps-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.first-step-container,
+.second-step-container,
+.third-step-container{
+  width: 100%;
+}
+
+/* INPUT PAIRS (input and label) */
+
+.input-pair {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.label-container label {
+  margin: 0 0 0 10px;
+}
+
+/* NEXT-BTN, BACK-BTN */
 
 .next-btn,
 .back-btn {
@@ -109,14 +148,9 @@
 
 .next-btn:hover,
 .back-btn:hover {
-  background-color: var(--light-blue);
-}
-
-.btns-container {
-  display: flex;
-  flex-direction: row;
-  width: 20%;
-  margin-left: auto;
+  background-color: transparent;
+  border: 2px solid var(--dark-blue);
+  color: var(--dark-blue)
 }
 
 /* STEPS */
@@ -128,8 +162,25 @@
 
 .inputs {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
+}
+
+.btns-container {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  margin-left: auto;
+}
+
+/* SECOND STEP - TOTAL COMPONENT */
+
+.total-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  align-items: flex-end;
+  color: var(--dark-blue);
 }
 
 .discount-pair {
@@ -164,43 +215,7 @@
   cursor: pointer;
 }
 
-/* INPUT PAIRS (input and p) */
-
-.pair {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.input-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.text-container label {
-  margin: 0 10px 0 0;
-}
-
-.selected-pair {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.total-container {
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  align-items: flex-end;
-  color: var(--dark-blue);
-}
-
-.error-msg{
-  color: var(--dark-red);
-  font-weight: 700;
-}
+/* THIRD STEP */
 
 .third-step-container .input-container input,
 textarea {
@@ -228,12 +243,18 @@ textarea:focus {
   color: var(--dark-blue);
 }
 
+.selected-pair {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .edit-btn {
   background-color: var(--dark-blue);
   color: white;
   font-weight: 700;
-  padding: 5px;
-  width: 10%;
+  padding: 10px;
+  width: auto;
   border: none;
   border-radius: 999px;
   margin: 0px 10px 10px 0;
@@ -241,10 +262,12 @@ textarea:focus {
 }
 
 .edit-btn:hover {
-  background-color: var(--light-blue);
+  background-color: transparent;
+  border: 2px solid var(--dark-blue);
+  color: var(--dark-blue);
 }
 
-/* CAR-RELATED CONTAINER */
+/* FOURTH STEP - CAR-RELATED CONTAINER */
 
 .car-related-container {
   margin: 10px 0;
@@ -254,15 +277,15 @@ textarea:focus {
   color: var(--dark-blue);
 }
 
-.first-step-container,
-.second-step-container {
+.review-first-container,
+.review-second-container {
   display: flex;
   flex-direction: column;
   width: 50%;
 }
 
-.first-step-container-title,
-.second-step-container-title {
+.review-first-container-title,
+.review-second-container-title {
   margin: 10px 0;
   display: flex;
   flex-direction: row;
@@ -270,20 +293,20 @@ textarea:focus {
   align-items: center;
 }
 
-.first-step-container-content {
+.review-first-container-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.second-step-container-content-total {
+.review-second-container-content-total {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   margin-left: auto;
 }
 
-/* CONTACT-INFO CONTAINER */
+/* FOURTH STEP - CONTACT-INFO CONTAINER */
 
 .contact-info-container {
   margin: 10px 0;
@@ -293,13 +316,13 @@ textarea:focus {
   color: var(--dark-blue);
 }
 
-.third-step-container {
+.review-third-container {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.third-step-container-title {
+.review-third-container-title {
   margin: 10px 0;
   display: flex;
   flex-direction: row;
@@ -307,7 +330,7 @@ textarea:focus {
   align-items: center;
 }
 
-.third-step-container-content {
+.review-third-container-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -327,7 +350,7 @@ textarea:focus {
   align-items: flex-end;
 }
 
-/* REVIEW CONTAINER BUTTONS */
+/* FOURTH STEP - REVIEW CONTAINER BUTTONS */
 
 .review-container-btns {
   margin: 10px 0;
@@ -338,7 +361,7 @@ textarea:focus {
   background-color: var(--dark-blue);
   color: white;
   font-weight: 700;
-  padding: 5px;
+  padding: 10px;
   width: auto;
   border: none;
   border-radius: 999px;
@@ -347,12 +370,27 @@ textarea:focus {
 }
 
 .review-container-btns button:hover {
-  background-color: var(--light-blue);
+  background-color: transparent;
+  border: 2px solid var(--dark-blue);
+  color: var(--dark-blue)
 }
 
 /* SEND MODAL */
 
 .send-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 25px;
+  background: gray;
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
   background-color: var(--dark-blue);
   color: white;
 }
@@ -370,6 +408,7 @@ textarea:focus {
 }
 
 .send-modal-btn button:hover {
-  background-color: var(--light-blue);
+  background-color: transparent;
+  border: 2px solid white;
   color: white;
 }

@@ -12,7 +12,7 @@ export default function FourthStep() {
     tel,
     email,
     add,
-    filteredSelected,
+    filteredSelected, 
     discount,
     correct,
     discountedTotal,
@@ -20,6 +20,8 @@ export default function FourthStep() {
   } = useContext(AnswersContext);
   const [showSendMessage, setShowSendMessage] = useState(false);
 
+
+  // Prikaz odabranih usluga u koraku 2
   const selected = filteredSelected.map((x) => {
     return (
       <div className="selected-pair">
@@ -38,27 +40,27 @@ export default function FourthStep() {
         <p>{pageList[page].subText}</p>
       </div>
       <div className="car-related-container">
-        <div className="first-step-container">
-          <div className="first-step-container-title">
+        <div className="review-first-container">
+          <div className="review-first-container-title">
             <h3>MODEL VOZILA</h3>
             <button className="edit-btn" onClick={() => setPage(0)}>
               UREDI
             </button>
           </div>
-          <div className="first-step-container-content">
+          <div className="review-first-container-content">
             <p>{radio}</p>
           </div>
         </div>
-        <div className="second-step-container">
-          <div className="second-step-container-title">
+        <div className="review-second-container">
+          <div className="review-second-container-title">
             <h3>ODABRANE USLUGE</h3>
             <button className="edit-btn" onClick={() => setPage(1)}>
               UREDI
             </button>
           </div>
-          <div className="second-step-container-content">
+          <div className="review-second-container-content">
             {selected}
-            <div className="second-step-container-content-total">
+            <div className="review-second-container-content-total">
               {correct && <p>Popust (30%) -{discount.toFixed(2)} KN</p>}{" "}
               UKUPNO : {correct ? discountedTotal.toFixed(2) : totalWithoutDiscount.toFixed(2)} kn
             </div>
@@ -66,14 +68,14 @@ export default function FourthStep() {
         </div>
       </div>
       <div className="contact-info-container">
-        <div className="third-step-container">
+        <div className="review-third-container">
           <div className="third-step-container-title">
             <h3>KONTAKT PODACI</h3>
             <button className="edit-btn" onClick={() => setPage(2)}>
               UREDI
             </button>
           </div>
-          <div className="third-step-container-content">
+          <div className="review-third-container-content">
             <div className="name-email-continer">
               <div className="container-pair">
                 <p>Ime i prezime: {name}</p>
@@ -94,7 +96,7 @@ export default function FourthStep() {
         </div>
       </div>
       <div className="review-container-btns">
-        <button onClick={() => setPage((prev) => prev - 1)}>NAZAD</button>
+        <button className='back-btn' onClick={() => setPage((prev) => prev - 1)}>NAZAD</button>
         <button onClick={() => setShowSendMessage(true)}>POŠALJI</button>
       </div>
 

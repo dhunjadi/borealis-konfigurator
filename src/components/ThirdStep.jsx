@@ -9,13 +9,12 @@ export default function ThirdStep() {
     useContext(AnswersContext);
     const [ error, setError ] = useState(false)
 
+
     const handleNext = () => {
       if (name.length !== 0 && email.length !== 0 && tel.length !== 0) {
         setPage((prev) => prev + 1);
-      }
-
-      if (name.length === 0 || email.length === 0 || tel.length === 0) {
-        setError(!error)
+      } else{
+        setError(true)
       }
     };
   

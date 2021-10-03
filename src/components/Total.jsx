@@ -3,23 +3,28 @@ import { AnswersContext } from "../context/AnswersContext";
 
 export default function Total() {
   const {
-    selected,
-    totalWithoutDiscount,
+    selected, // Odabrane usluge spremaju se u context
+    totalWithoutDiscount, // Ukupan iznos bez popusta
     setTotalWithoutDiscount,
-    showCoupon,
-    setShowCoupon,
-    discount,
-    discountInput,
-    setDiscountInput,
-    base,
+    showCoupon, // State za prikaz "Imam kupon"
+    setShowCoupon, // u zadnjem koraku o njemu ovisi kako će izgledati pregled
+    discount, // Iznos popusta
+    couponInput, // State za unos kupona
+    setCouponInput,
+    base, // Osnovica u slučaju ispravnog kupona
     setBase,
-    discountedTotal,
-    correct,
+    discountedTotal, // Ukupan iznos sa popustom
+    correct, // State za prikaz poruke kod unosa ispravnog kupona
     setCorrect
   } = useContext(AnswersContext);
-  const [inputValue, setInputValue] = useState("");
-  const [incorrect, setIncorrect] = useState(false);
+  const [inputValue, setInputValue] = useState(""); // State unos kupona
+  const [incorrect, setIncorrect] = useState(false); //State za neispravan unos kupona
 
+  // Računanje ukupnog iznosa bez popusta
+
+  // Ukupni iznos se stavlja u dva state-a pa se kasnije,
+  // ovisno je li upisan ispravn kupon, prikazuje ukupan iznos bez popusta
+  // ili se prikazuje drugi kao osnovica za popust
   useEffect(() => {
     let totalPrice = selected.reduce((sum, curr) => {
       return sum + Number(curr);
@@ -28,12 +33,13 @@ export default function Total() {
     setBase(totalPrice)
   }, [selected, setTotalWithoutDiscount, setBase]);
 
+  // Submit kupona
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputValue === "Tokić123") {
       setIncorrect(false);
       setCorrect(true);
-      setDiscountInput(false);
+      setCouponInput(false);
       setShowCoupon(false)
       setTotalWithoutDiscount((prev) => (70 / 100) * prev);
     } else {
@@ -52,8 +58,8 @@ export default function Total() {
           <p>Popust (30%): {discount.toFixed(2)}</p>
         </>
       )}
-      {incorrect && <p className="fail-msg">Neispravan kupon!</p>}
-      {discountInput ? (
+      {incorrect && <p className="error-msg">Neispravan kupon!</p>}
+      {couponInput ? (
         <div className="discount-pair">
           <input
             type="text"
@@ -65,8 +71,8 @@ export default function Total() {
           </button>
         </div>
       ) : null}
-        {showCoupon &&<p onClick={() => {
-          setDiscountInput(true)
+        {showCoupon &&<p className='coupon-link' onClick={() => {
+          setCouponInput(true)
           setShowCoupon(false)
           }}>Imam kupon</p>}
       

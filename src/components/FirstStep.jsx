@@ -9,9 +9,10 @@ export default function FirstStep() {
   const { radio, setRadio } = useContext(AnswersContext);
   const [ error, setError ] = useState(false)
 
+  // Inputi
   const inputs = pageList[page].answers.map((ans) => {
     return (
-      <div key={uuidv4()} className="pair">
+      <div key={uuidv4()} className="input-pair">
         <div className="input-container">
           <input
             type="radio"
@@ -20,20 +21,19 @@ export default function FirstStep() {
             onChange={(e) => setRadio(e.target.value)}
           />
         </div>
-        <div className="text-container">
+        <div className="label-container">
           <label>{ans.answer}</label>
         </div>
       </div>
     );
   });
 
+  // Sljedeći korak
   const handleNext = () => {
     if (radio) {
       setPage((prev) => prev + 1);
-    }
-
-    if(!radio) {
-      setError(!error)
+    } else {
+      setError(true)
     }
   };
 
