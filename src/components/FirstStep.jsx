@@ -16,13 +16,14 @@ export default function FirstStep() {
         <div className="input-container">
           <input
             type="radio"
+            id={ans.answer}
             checked={radio === ans.answer}
             value={ans.answer}
             onChange={(e) => setRadio(e.target.value)}
           />
         </div>
         <div className="label-container">
-          <label>{ans.answer}</label>
+          <label htmlFor={ans.answer}>{ans.answer}</label>
         </div>
       </div>
     );

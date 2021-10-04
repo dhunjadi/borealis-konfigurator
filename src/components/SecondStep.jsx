@@ -40,13 +40,14 @@ export default function SecondStep() {
         <div className="input-container">
           <input
             type="checkbox"
+            id={ans.answer}
             value={ans.price}
             checked={selected.some((val) => val === ans.price)}
             onChange={handleChange}
           />
         </div>
         <div className="label-container">
-          <label htmlFor={ans.id}>{ans.answer}</label>
+          <label htmlFor={ans.answer}>{ans.answer}</label>
         </div>
       </div>
     );

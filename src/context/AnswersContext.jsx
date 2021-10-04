@@ -25,7 +25,7 @@ export const AnswersContextProvider = ({ children }) => {
   const discount = base * 0.3; // Popust
   const discountedTotal = base - discount; // Osnovica - popust
 
-
+ // Prikaz odabranih usluga iz drugog koraka u koraku 4
   let filteredSelected = [];
   for (let i = 0; i < selected.length; i++) {
     filteredSelected = [

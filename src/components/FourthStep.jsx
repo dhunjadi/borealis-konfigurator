@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { AnswersContext } from "../context/AnswersContext";
 import { PageContext } from "../context/PageContext";
 import pageList from "../pageList";
@@ -24,7 +25,7 @@ export default function FourthStep() {
   // Prikaz odabranih usluga u koraku 2
   const selected = filteredSelected.map((x) => {
     return (
-      <div className="selected-pair">
+      <div key={uuidv4()} className="selected-pair">
         <div className="selected-title">{x.answer}</div>
         <div className="selected-price">{x.price} KN</div>
       </div>
